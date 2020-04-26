@@ -335,7 +335,38 @@ ej2b:
 	JMP	inicio
 
 ejercicio3:
+	mov	ax,1d 
+	mov  	bx,0d
+	mov	dx,0d ;bandera de apoyo
+	mov	cx,0d
+	mov	di,0d
 
+	mov	[220h+di],bx 
+	inc	di 
+	mov 	[220h+di],ax ;aqui solo se inician los primeros dos valores
+	inc 	di 
 
+fibo:	
+	cmp	cx,13d
+	JE	final
+	mov	dx,ax 
+	add	ax,bx
+	mov	bx,dx
+
+	cmp	ah,00h
+	JE	ej3a
+	JMP	ej3b
+ej3a:
+	mov 	[220h+di],ax
+	inc	di 
+	inc 	cx
+	JMP	fibo 
+ej3b:
+	mov 	[220h+di],ax
+	inc 	di
+	inc 	cx 
+	JMP	fibo
+
+final:	
 	int	20h
 
