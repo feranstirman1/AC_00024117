@@ -308,7 +308,33 @@ men1:
 
 
 ejercicio2:
+	mov	di,0d ;nuestro indice para la memoria
+	mov	cx,0d ;cx sera nuestro contador
+	mov	bx,2d ;bx sera nuestro multiplicador
+	mov	ax,2d ;ax sera nuestro acumulador
 
+inicio:	
+	cmp	cx,11d
+	JE	ejercicio3 ;si ya se hicieron los primeros 11 pasa al siguiente ejercicio
+
+	mul	bx
+	cmp	ah,00h
+	JE	ej2a
+	JMP	ej2b
+ej2a:	
+	mov	[210h+di],ax
+	inc	di
+	inc	cx
+	JMP	inicio
+ej2b:
+	inc	di
+	mov	[210h+di],ah 
+	inc 	di 
+	mov 	[210h+di],al
+	inc 	cx 
+	JMP	inicio
+
+ejercicio3:
 
 
 	int	20h
